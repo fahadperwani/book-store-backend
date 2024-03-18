@@ -4,6 +4,11 @@ import payment from "./payment/payment.cjs";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 mongoose
   .connect(process.env.MONGODB_URL)
@@ -24,4 +29,4 @@ app.get("/", (req, res) => {
 app.use("/genre", genre);
 app.use("/stripe/payment", payment);
 
-app.listen(port, console.log("listening to port 5000"));
+app.listen(port, console.log("listening to port: " + port));
